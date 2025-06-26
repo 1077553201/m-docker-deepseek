@@ -7,7 +7,7 @@ docker部署本地deep seek
 
 //ollama 配置 并启动（本次缺少这个配置--network host ）
 
-	ocker run -d \
+	docker run -d \
 	-name ollama \
 	v ~/ollama-data:/root/.ollama \  # 挂载目录持久化模型数据
 	p 11434:11434 \                 # 暴露API端口
