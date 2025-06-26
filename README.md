@@ -57,7 +57,7 @@ docker部署本地deep seek
 谁需要这个正确配置在外部访问的话让测试人员连夜给你们做！Q&Q？*****
 
 
-
+![演示](https://github.com/1077553201/m-docker-deepseek/issues/1#issue-3178149701)
 
 
 
