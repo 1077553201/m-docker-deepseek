@@ -8,12 +8,12 @@ docker部署本地deep seek
 //ollama 配置 并启动（本次缺少这个配置--network host ）
 
 	docker run -d \
-	-name ollama \
-	v ~/ollama-data:/root/.ollama \  # 挂载目录持久化模型数据
-	p 11434:11434 \                 # 暴露API端口
-	-cpus=2 \                        # 限制使用2个CPU核心
-	-memory=6g \                     # 分配6GB内存（预留2GB给Ubuntu系统）
-	llama/ollama:latest
+	--name ollama \
+	-v ~/ollama-data:/root/.ollama \  # 挂载目录持久化模型数据
+	-p 11434:11434 \                 # 暴露API端口
+	--cpus=2 \                        # 限制使用2个CPU核心
+	--memory=6g \                     # 分配6GB内存（预留2GB给Ubuntu系统）
+	ollama/ollama:latest
 
 
 参数说明​：
@@ -24,13 +24,13 @@ docker部署本地deep seek
 
 //验证容器状态
 
-	cker ps -a | grep ollama      # 状态应为"Up"
- 	rl http://localhost:11434      # 返回"Ollama is running"即正常
+	docker ps -a | grep ollama      # 状态应为"Up"
+ 	curl http://localhost:11434      # 返回"Ollama is running"即正常
 
 
 //进入ollama 容器
 
-	ocker exec -it ollama /bin/bash
+	docker exec -it ollama /bin/bash
 
 *//在ollama容器内运行
 
@@ -48,7 +48,7 @@ docker部署本地deep seek
 
 //安装openWebUi
 
-	ocker run -d -p 3000:8080 --add-host=host.docker.internal:host-gateway -v open-webui:/app/backend/data --name open-webui --restart always ghcr.io/open-webui/open-webui:main
+	docker run -d -p 3000:8080 --add-host=host.docker.internal:host-gateway -v open-webui:/app/backend/data --name open-webui --restart always ghcr.io/open-webui/open-webui:main
 
 //装好之后可以在虚拟机内部浏览器访问http://localhost:3000,配置连接deep seek使用******
 
